@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ActionProviders\Docker\Docker.csproj" />
     <ProjectReference Include="..\ActionProviders\Git\Git.csproj" />
+    <ProjectReference Include="..\ActionProviders\Shell\Shell.csproj" />
   </ItemGroup>
 
 </Project>
