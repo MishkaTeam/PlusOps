@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ActionEngine\ActionEngine.csproj" />
-  </ItemGroup>
-
 </Project>

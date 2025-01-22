@@ -17,9 +17,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BAADAF6A-19A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebhookUnitTests", "tests\WebhookUnitTests\WebhookUnitTests.csproj", "{DDA6666A-4BDB-4E64-9EA4-559442CD9E0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docker", "src\ActionProviders\Docker\Docker.csproj", "{A475FFDF-17DF-4AC3-AA47-C01CC845CD17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Docker", "src\ActionProviders\Docker\Docker.csproj", "{A475FFDF-17DF-4AC3-AA47-C01CC845CD17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell", "src\ActionProviders\Shell\Shell.csproj", "{9DD91517-4C5C-4B59-AFD5-DBE81698CFC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shell", "src\ActionProviders\Shell\Shell.csproj", "{9DD91517-4C5C-4B59-AFD5-DBE81698CFC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionEngine", "src\ActionEngine\ActionEngine.csproj", "{51EEB1F5-79AB-444D-AE9E-97EFAA6AEDE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{9DD91517-4C5C-4B59-AFD5-DBE81698CFC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DD91517-4C5C-4B59-AFD5-DBE81698CFC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DD91517-4C5C-4B59-AFD5-DBE81698CFC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51EEB1F5-79AB-444D-AE9E-97EFAA6AEDE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51EEB1F5-79AB-444D-AE9E-97EFAA6AEDE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51EEB1F5-79AB-444D-AE9E-97EFAA6AEDE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51EEB1F5-79AB-444D-AE9E-97EFAA6AEDE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{DDA6666A-4BDB-4E64-9EA4-559442CD9E0E} = {F7FD1855-D6C4-4208-A389-EBD329E2A09E}
 		{A475FFDF-17DF-4AC3-AA47-C01CC845CD17} = {28AD8B59-74EA-42AD-9182-686D2B7F0824}
 		{9DD91517-4C5C-4B59-AFD5-DBE81698CFC7} = {28AD8B59-74EA-42AD-9182-686D2B7F0824}
+		{51EEB1F5-79AB-444D-AE9E-97EFAA6AEDE4} = {BAADAF6A-19A1-42AC-B8E3-2FC4003CFEFA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {263AC335-1C7D-471B-8827-5BE830E50456}
