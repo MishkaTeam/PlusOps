@@ -25,6 +25,9 @@ internal class GitCommands(IGitCommands gitCommands)
 						cloneStep.TryGetValue("Url", out var url);
 						cloneStep.TryGetValue("Dir", out var dir);
 
+						if(!Directory.Exists(dir.ToString()))
+							Directory.CreateDirectory(dir.ToString());
+
 						 var commandRes= gitCommands
 									.CloneRepository(url?.ToString(), dir?.ToString());
 

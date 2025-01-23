@@ -19,6 +19,7 @@ namespace Git.Commands
         ICommandResult PushChanges(string remoteName, string branchName);
         ICommandResult RebaseBranch(string branchName);
         ICommandResult ResetToCommit(string commitHash);
+        void SetWorkingDirectory(string workingDirectory);
         ICommandResult StashChanges();
         ICommandResult SwitchBranch(string branchName);
         ICommandResult TagCommit(string tagName);

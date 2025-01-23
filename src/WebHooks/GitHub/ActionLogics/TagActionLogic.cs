@@ -4,13 +4,13 @@ using WebHooks.GitHub.Contracts;
 
 namespace WebHooks.GitHub.ActionLogics;
 
-internal class TagActionLogic
+internal class TagActionLogic(IActionManager actionManager)
 {
-	public static Task ExecuteAsync(GithubWebhookRequest request, CancellationToken cancellationToken)
+	public Task ExecuteAsync(GithubWebhookRequest request, CancellationToken cancellationToken)
 	{
 		var file = @"C:\temp\git_tag.yaml";
-		var fileStep = ActionManager.ParseFile(file);
-		var result = ActionManager.Execute(fileStep);
+		var fileStep = actionManager.ParseFile(file);
+		 _ = actionManager.Execute(fileStep);
 		return Task.CompletedTask;
 	}
 }

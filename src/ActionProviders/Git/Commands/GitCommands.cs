@@ -8,9 +8,13 @@ internal class GitCommands : IGitCommands
     private readonly ICommandProvider _commandProvider;
     private string _workingDirectory;
 
-    public GitCommands(ICommandProvider commandProvider, string workingDirectory)
+    public GitCommands(ICommandProvider commandProvider)
     {
         _commandProvider = commandProvider;
+    }
+
+    public void SetWorkingDirectory(string workingDirectory)
+    {
         _workingDirectory = workingDirectory;
     }
 
