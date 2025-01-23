@@ -14,6 +14,7 @@ public class GitHubWebhookEndPoint(IGitHubWebhookLogic gitHubWebhookLogic) : End
     }
     public override Task HandleAsync(GithubWebhookRequest req, CancellationToken ct)
     {
-        return gitHubWebhookLogic.ExecuteAsync(req, ct);
+        _  = Task.Run(() =>  gitHubWebhookLogic.ExecuteAsync(req, ct));
+        return Task.CompletedTask;
     }
 }

@@ -11,7 +11,7 @@ internal class DockerCommands : IDockerCommands
         _commandProvider = commandProvider;
     }
 
-    public string RunContainer(string containerName, string imageName)
+    public ICommandResult RunContainer(string containerName, string imageName)
     {
         var command = _commandProvider.CreateCommand("docker", opt => opt
             .AddArgument("run")
@@ -21,59 +21,59 @@ internal class DockerCommands : IDockerCommands
             .AddArgument(imageName)
         );
         var result = command.Execute();
-        return result.Output;
+        return result;
     }
 
-    public string ListContainers()
+    public ICommandResult ListContainers()
     {
         var command = _commandProvider.CreateCommand("docker", opt => opt
             .AddArgument("ps")
         );
         var result = command.Execute();
-        return result.Output;
+        return result;
     }
 
-    public string StopContainer(string containerName)
+    public ICommandResult StopContainer(string containerName)
     {
         var command = _commandProvider.CreateCommand("docker", opt => opt
             .AddArgument("stop")
             .AddArgument(containerName)
         );
         var result = command.Execute();
-        return result.Output;
+        return result;
     }
 
-    public string RemoveContainer(string containerName)
+    public ICommandResult RemoveContainer(string containerName)
     {
         var command = _commandProvider.CreateCommand("docker", opt => opt
             .AddArgument("rm")
             .AddArgument(containerName)
         );
         var result = command.Execute();
-        return result.Output;
+        return result;
     }
 
-    public string PullImage(string imageName)
+    public ICommandResult PullImage(string imageName)
     {
         var command = _commandProvider.CreateCommand("docker", opt => opt
             .AddArgument("pull")
             .AddArgument(imageName)
         );
         var result = command.Execute();
-        return result.Output;
+        return result;
     }
 
-    public string InspectLogs(string containerName)
+    public ICommandResult InspectLogs(string containerName)
     {
         var command = _commandProvider.CreateCommand("docker", opt => opt
             .AddArgument("logs")
             .AddArgument(containerName)
         );
         var result = command.Execute();
-        return result.Output;
+        return result;
     }
 
-    public string BuildImage(string imageName, string dockerfilePath)
+    public ICommandResult BuildImage(string imageName, string dockerfilePath)
     {
         var command = _commandProvider.CreateCommand("docker", opt => opt
             .AddArgument("build")
@@ -83,10 +83,10 @@ internal class DockerCommands : IDockerCommands
             .WorkingDirectory(dockerfilePath)
         );
         var result = command.Execute();
-        return result.Output;
+        return result;
     }
 
-    public string ExecuteCommandInContainer(string containerName, string commandToExecute)
+    public ICommandResult ExecuteCommandInContainer(string containerName, string commandToExecute)
     {
         var command = _commandProvider.CreateCommand("docker", opt => opt
             .AddArgument("exec")
@@ -94,7 +94,7 @@ internal class DockerCommands : IDockerCommands
             .AddArgument(commandToExecute)
         );
         var result = command.Execute();
-        return result.Output;
+        return result;
     }
 
 

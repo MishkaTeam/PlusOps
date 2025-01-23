@@ -1,12 +1,14 @@
-﻿namespace Docker;
+﻿using Commandy.Abstractions;
+
+namespace Docker;
 public interface IDockerCommands
 {
-    string BuildImage(string imageName, string dockerfilePath);
-    string ExecuteCommandInContainer(string containerName, string commandToExecute);
-    string InspectLogs(string containerName);
-    string ListContainers();
-    string PullImage(string imageName);
-    string RemoveContainer(string containerName);
-    string RunContainer(string containerName, string imageName);
-    string StopContainer(string containerName);
+    ICommandResult BuildImage(string imageName, string dockerfilePath);
+    ICommandResult ExecuteCommandInContainer(string containerName, string commandToExecute);
+    ICommandResult InspectLogs(string containerName);
+    ICommandResult ListContainers();
+    ICommandResult PullImage(string imageName);
+    ICommandResult RemoveContainer(string containerName);
+    ICommandResult RunContainer(string containerName, string imageName);
+    ICommandResult StopContainer(string containerName);
 }

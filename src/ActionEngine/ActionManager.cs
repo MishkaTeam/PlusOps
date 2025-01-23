@@ -1,12 +1,16 @@
 ﻿using System.Text.Json;
 using ActionEngine.Commands;
-using Commandy.Abstractions;
+using ActionEngine.Contracts;
 using Microsoft.Extensions.Logging;
 using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace ActionEngine;
 
-internal class ActionManager(ILogger<ActionManager> logger, GitCommands gitCommands) : IActionManager
+internal class ActionManager(ILogger<ActionManager> logger,
+GitCommands gitCommands,
+ShellCommands shellCommands,
+DockerCommands dockerCommands) : IActionManager
 {
     public List<ActionResponse> Execute(Dictionary<object, object> fileSteps)
     {
@@ -14,17 +18,27 @@ internal class ActionManager(ILogger<ActionManager> logger, GitCommands gitComma
         foreach (var item in fileSteps)
         {
             res = gitCommands.GitCommand(item);
-            foreach (var result in res)
-            {
-                logger.LogInformation("{Command} : {ExitCode}({Error}) - {Output}", 
-                result.Command, 
-                result.CommandResult.ExitCode, 
-                result.CommandResult.Error, 
-                result.CommandResult.Output);
-            }
+            Log(res);
+            res = dockerCommands.DockerCommand(item);
+            Log(res);
+            res = shellCommands.Execute(item);
+            Log(res);
+
         }
 
         return res;
+    }
+
+    private void Log(List<ActionResponse> res)
+    {
+        foreach (var result in res)
+        {
+            logger.LogInformation("{Command} : {ExitCode}({Error}) - {Output}",
+            result.Command,
+            result.CommandResult?.ExitCode,
+            result.CommandResult?.Error,
+            result.CommandResult?.Output);
+        }
     }
 
     public Dictionary<object, object> ParseFile(string file)
@@ -32,25 +46,15 @@ internal class ActionManager(ILogger<ActionManager> logger, GitCommands gitComma
         var fileContent = File.ReadAllText(file);
 
         var deserializer = new DeserializerBuilder()
+            .WithNamingConvention(CamelCaseNamingConvention.Instance)
+            .IgnoreUnmatchedProperties()
             .Build();
 
         var dynamicObject = deserializer.Deserialize<dynamic>(fileContent);
         if (dynamicObject is Dictionary<object, object> dictionary)
-        {
+        {   
             return dictionary;
         }
         throw new Exception("The dynamic object is not a Dictionary<object,object>.");
     }
-}
-
-public class ActionResponse
-{
-    public ActionResponse(string command, ICommandResult commandResult)
-    {
-        Command = command;
-        CommandResult = commandResult;
-    }
-
-    public string Command { get; set; }
-    public ICommandResult CommandResult { get; set; }
 }
