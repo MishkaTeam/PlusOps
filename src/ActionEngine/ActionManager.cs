@@ -41,10 +41,8 @@ DockerCommands dockerCommands) : IActionManager
         }
     }
 
-    public Dictionary<object, object> ParseFile(string file)
+    public Dictionary<object, object> ParseFile(string fileContent)
     {
-        var fileContent = File.ReadAllText(file);
-
         var deserializer = new DeserializerBuilder()
             .WithNamingConvention(CamelCaseNamingConvention.Instance)
             .IgnoreUnmatchedProperties()
@@ -52,9 +50,45 @@ DockerCommands dockerCommands) : IActionManager
 
         var dynamicObject = deserializer.Deserialize<dynamic>(fileContent);
         if (dynamicObject is Dictionary<object, object> dictionary)
-        {   
+        {
             return dictionary;
         }
         throw new Exception("The dynamic object is not a Dictionary<object,object>.");
+    }
+
+    public string FileEditor(string configFileContent, object content)
+    {
+        if (content is null)
+        {
+            return configFileContent;
+        }
+
+        var properties = content.GetType().GetProperties();
+        foreach (var property in properties)
+        {
+            var propertyName = property.Name;
+            var propertyValue = property.GetValue(content);
+            if (property.PropertyType == typeof(string)
+            || property.PropertyType == typeof(int)
+            || property.PropertyType == typeof(DateTime))
+            {
+                configFileContent = configFileContent
+                            .Replace($"$[{propertyName}]", propertyValue?.ToString() ?? "''",
+                            StringComparison.InvariantCultureIgnoreCase);
+            }
+            else if (property.PropertyType == typeof(object))
+            {
+                logger.LogError("[FileEditor] object type is not valid:  property => {property}", propertyName);
+            }
+            else
+            {
+                configFileContent = FileEditor(configFileContent, propertyValue);
+            }
+
+
+        }
+
+        return configFileContent;
+
     }
 }

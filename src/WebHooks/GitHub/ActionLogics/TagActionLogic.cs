@@ -9,7 +9,9 @@ internal class TagActionLogic(IActionManager actionManager)
 	public Task ExecuteAsync(GithubWebhookRequest request, CancellationToken cancellationToken)
 	{
 		var file = @"C:\temp\git_tag.yaml";
-		var fileStep = actionManager.ParseFile(file);
+        var fileContent = File.ReadAllText(file);
+		var fileContentWithVariables = actionManager.FileEditor(fileContent,request);
+		var fileStep = actionManager.ParseFile(fileContentWithVariables);
 		 _ = actionManager.Execute(fileStep);
 		return Task.CompletedTask;
 	}

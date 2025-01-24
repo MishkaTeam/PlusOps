@@ -6,5 +6,6 @@ namespace ActionEngine;
 public interface IActionManager
 {
     List<ActionResponse> Execute(Dictionary<object, object> fileSteps);
-    Dictionary<object, object> ParseFile(string file);
+    string FileEditor(string configFileContent, object content);
+    Dictionary<object, object> ParseFile(string fileContent);
 }

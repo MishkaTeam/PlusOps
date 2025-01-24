@@ -78,7 +78,7 @@ internal class DockerCommands : IDockerCommands
         var command = _commandProvider.CreateCommand("docker", opt => opt
             .AddArgument("build")
             .AddArgument("-t")
-            .AddArgument(imageName)
+            .AddArgument(imageName.ToLower())
             .AddArgument(".")
             .WorkingDirectory(dockerfilePath)
         );
