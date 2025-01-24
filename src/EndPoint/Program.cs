@@ -6,6 +6,7 @@ using Docker;
 using Shell;
 using ActionEngine;
 using Commandy.DependencyInjection;
+using SharedFramework;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddFastEndpoints();
@@ -18,6 +19,18 @@ builder.Services.AddShellActionProvider();
 builder.Services.AddActionEngineProvider();
 builder.Services.AddWebHooksProvider();
 
+builder.Services.Configure<Configs>
+    (builder.Configuration.GetSection(key: Configs.Key))
+    .AddSingleton
+    (implementationFactory: serviceType =>
+    {
+        var result =
+            serviceType.GetRequiredService
+            <Microsoft.Extensions.Options.IOptions
+            <Configs>>().Value;
+
+        return result;
+    });
 var app = builder.Build();
 app.UseFastEndpoints();
 app.UseSwaggerGen();

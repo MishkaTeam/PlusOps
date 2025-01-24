@@ -17,8 +17,8 @@ internal class DockerCommands : IDockerCommands
             .AddArgument("run")
             .AddArgument("-d")
             .AddArgument("--name")
-            .AddArgument(containerName)
-            .AddArgument(imageName)
+            .AddArgument(containerName.ToLower())
+            .AddArgument(imageName.ToLower())
         );
         var result = command.Execute();
         return result;

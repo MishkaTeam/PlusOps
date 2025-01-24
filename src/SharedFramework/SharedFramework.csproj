@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ActionEngine\ActionEngine.csproj" />
-    <ProjectReference Include="..\SharedFramework\SharedFramework.csproj" />
-  </ItemGroup>
-
 </Project>

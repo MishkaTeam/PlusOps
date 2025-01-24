@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Docker.Commands;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Docker;
 
@@ -7,7 +8,9 @@ public static class DockerServiceCollectionExtensions
 	public static IServiceCollection AddDockerActionProvider(this IServiceCollection services)
 	{
 		services.AddScoped<IDockerCommands, DockerCommands>();
-		return services;
+        services.AddScoped<IDockerComposeCommands, DockerComposeCommands>();
+
+        return services;
 	}
 
 }

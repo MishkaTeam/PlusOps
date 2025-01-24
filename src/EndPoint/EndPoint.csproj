@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ActionProviders\Git\Git.csproj" />
+    <ProjectReference Include="..\SharedFramework\SharedFramework.csproj" />
     <ProjectReference Include="..\WebHooks\WebHooks.csproj" />
   </ItemGroup>
 

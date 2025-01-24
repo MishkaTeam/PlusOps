@@ -19,11 +19,23 @@ DockerCommands dockerCommands) : IActionManager
         {
             res = gitCommands.GitCommand(item);
             Log(res);
+            if(res.Any(x => x.CommandResult?.ExitCode != 0))
+                return res;
+
             res = dockerCommands.DockerCommand(item);
             Log(res);
+            if (res.Any(x => x.CommandResult?.ExitCode != 0))
+                return res;
+
+            res = dockerCommands.DockerComposeCommand(item);
+            Log(res);
+            if (res.Any(x => x.CommandResult?.ExitCode != 0))
+                return res;
+
             res = shellCommands.Execute(item);
             Log(res);
-
+            if (res.Any(x => x.CommandResult?.ExitCode != 0))
+                return res;
         }
 
         return res;

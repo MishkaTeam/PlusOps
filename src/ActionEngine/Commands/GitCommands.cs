@@ -1,29 +1,30 @@
-﻿using ActionEngine.Contracts;
+﻿using System.Net.Http.Headers;
+using ActionEngine.Contracts;
 using Git.Commands;
 
 namespace ActionEngine.Commands;
 
 internal class GitCommands(IGitCommands gitCommands)
 {
-	internal List<ActionResponse> GitCommand(KeyValuePair<object, object> item)
-	{
-		var res = new List<ActionResponse>();
-		if (!string.Equals(item.Key.ToString(), "git", StringComparison.InvariantCultureIgnoreCase))
-		{
-			return res;
-		}
+    internal List<ActionResponse> GitCommand(KeyValuePair<object, object> item)
+    {
+        var res = new List<ActionResponse>();
+        if (!string.Equals(item.Key.ToString(), "git", StringComparison.InvariantCultureIgnoreCase))
+        {
+            return res;
+        }
 
-		if (item.Value is Dictionary<object, object> gitSteps)
-		{
-			foreach (var step in gitSteps)
+        if (item.Value is Dictionary<object, object> gitSteps)
+        {
+            foreach (var step in gitSteps)
             {
-                 res.Add(Clone(step));
+                res.Add(Clone(step));
 
             }
         }
-		return res;
+        return res;
 
-	}
+    }
 
     private ActionResponse Clone(KeyValuePair<object, object> step)
     {
@@ -36,8 +37,14 @@ internal class GitCommands(IGitCommands gitCommands)
                 cloneStep.TryGetValue("Url", out var url);
                 cloneStep.TryGetValue("Dir", out var dir);
 
-                if (!Directory.Exists(dir.ToString()))
-                    Directory.CreateDirectory(dir.ToString());
+                if (!Directory.Exists(dir?.ToString()))
+                    Directory.CreateDirectory(dir?.ToString());
+                else
+                {
+                    Directory.Delete(dir?.ToString(), true);
+                    Directory.CreateDirectory(dir?.ToString());
+                }
+
 
                 var commandRes = gitCommands
                            .CloneRepository(url?.ToString(), dir?.ToString());

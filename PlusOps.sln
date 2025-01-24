@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Docker", "src\ActionProvide
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shell", "src\ActionProviders\Shell\Shell.csproj", "{9DD91517-4C5C-4B59-AFD5-DBE81698CFC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionEngine", "src\ActionEngine\ActionEngine.csproj", "{51EEB1F5-79AB-444D-AE9E-97EFAA6AEDE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionEngine", "src\ActionEngine\ActionEngine.csproj", "{51EEB1F5-79AB-444D-AE9E-97EFAA6AEDE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedFramework", "src\SharedFramework\SharedFramework.csproj", "{48D64198-1C2A-40A4-ADE3-C3082BF9DB14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{51EEB1F5-79AB-444D-AE9E-97EFAA6AEDE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51EEB1F5-79AB-444D-AE9E-97EFAA6AEDE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51EEB1F5-79AB-444D-AE9E-97EFAA6AEDE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48D64198-1C2A-40A4-ADE3-C3082BF9DB14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48D64198-1C2A-40A4-ADE3-C3082BF9DB14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48D64198-1C2A-40A4-ADE3-C3082BF9DB14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48D64198-1C2A-40A4-ADE3-C3082BF9DB14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{A475FFDF-17DF-4AC3-AA47-C01CC845CD17} = {28AD8B59-74EA-42AD-9182-686D2B7F0824}
 		{9DD91517-4C5C-4B59-AFD5-DBE81698CFC7} = {28AD8B59-74EA-42AD-9182-686D2B7F0824}
 		{51EEB1F5-79AB-444D-AE9E-97EFAA6AEDE4} = {BAADAF6A-19A1-42AC-B8E3-2FC4003CFEFA}
+		{48D64198-1C2A-40A4-ADE3-C3082BF9DB14} = {BAADAF6A-19A1-42AC-B8E3-2FC4003CFEFA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {263AC335-1C7D-471B-8827-5BE830E50456}
